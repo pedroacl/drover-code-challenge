@@ -5,11 +5,12 @@ import CarDetailsBody from './CarDetailsBody';
 import CarDetailsFooter from './CarDetailsFooter';
 
 const style = {
+  height: '100%',
 };
 
 const CarDetails = props => (
-  <div style={style} className="">
-    <div className="row" style={style}>
+  <div style={style} style={style}>
+    <div className="row">
       <div className="col">
         <CarDetailsHeader car={props.car} />
       </div>
@@ -17,7 +18,7 @@ const CarDetails = props => (
 
     <hr/>
 
-    <div className="row" style={style}>
+    <div className="row">
       <div className="col">
         <CarDetailsBody car={props.car} />
       </div>
@@ -25,13 +26,13 @@ const CarDetails = props => (
 
     <hr/>
 
-    <div className="row" style={style}>
+    <div className="row">
       <div className="col">
         Tech specs
       </div>
     </div>
 
-    <div className="row" style={style}>
+    <div className="row">
       <div className="col">
         <CarDetailsFooter car={props.car} />
       </div>

@@ -1,1 +1,3 @@
-## A React.js project for the Drover code challenge
+## Drover code challenge
+
+This project has the objective to implement the search form from Drover's homepage.
