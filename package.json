@@ -10,6 +10,9 @@
     "npm": ">=3",
     "node": ">=5"
   },
+  "node": {
+    "fs": "empty"
+  },
   "author": "Max Stoiber",
   "license": "MIT",
   "scripts": {
@@ -47,7 +50,7 @@
   "lint-staged": {
     "*.js": "lint:eslint"
   },
-  "pre-commit": "lint:staged",
+  "pre-commit": "lint:staged",  
   "babel": {
     "plugins": [
       "styled-components"
@@ -212,23 +215,24 @@
     "testRegex": "tests/.*\\.test\\.js$"
   },
   "dependencies": {
-    "popper.js": "1.14.3",
-    "jquery": "3.3.1",
-    "bootstrap": "4.1.1",    
+    "axios": "0.18.0",
     "babel-polyfill": "6.23.0",
+    "bootstrap": "4.1.1",
     "chalk": "^1.1.3",
-    "compression": "1.6.2",
+    "compression": "^1.7.2",
     "cross-env": "5.0.0",
-    "express": "4.15.3",
+    "express": "^4.16.3",
     "fontfaceobserver": "2.0.9",
     "history": "4.6.3",
     "hoist-non-react-statics": "2.1.1",
     "immutable": "3.8.1",
     "intl": "1.2.5",
     "invariant": "2.2.2",
-    "ip": "1.1.5",
-    "lodash": "4.17.4",
+    "ip": "^1.1.5",
+    "jquery": "3.3.1",
+    "lodash": "^4.17.10",
     "minimist": "1.2.0",
+    "popper.js": "1.14.3",
     "prop-types": "15.5.10",
     "react": "15.6.1",
     "react-dom": "15.6.1",
@@ -238,7 +242,9 @@
     "react-redux": "5.0.5",
     "react-router-dom": "4.1.1",
     "react-router-redux": "5.0.0-alpha.6",
+    "react-waypoint": "8.0.1",
     "redux": "3.6.0",
+    "redux-form": "7.3.0",
     "redux-immutable": "4.0.0",
     "redux-saga": "0.15.3",
     "reselect": "3.0.1",
@@ -248,8 +254,8 @@
     "whatwg-fetch": "2.0.3"
   },
   "devDependencies": {
-    "add-asset-html-webpack-plugin": "2.0.1",
-    "babel-cli": "6.24.1",
+    "add-asset-html-webpack-plugin": "^2.0.1",
+    "babel-cli": "^6.26.0",
     "babel-core": "6.24.1",
     "babel-eslint": "7.2.3",
     "babel-loader": "7.1.0",
@@ -261,7 +267,7 @@
     "babel-plugin-transform-react-constant-elements": "6.23.0",
     "babel-plugin-transform-react-inline-elements": "6.22.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.5",
-    "babel-preset-env": "1.5.1",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-react": "6.24.1",
     "babel-preset-stage-0": "6.24.1",
     "circular-dependency-plugin": "3.0.0",
@@ -280,10 +286,10 @@
     "exports-loader": "0.6.4",
     "file-loader": "0.11.1",
     "html-loader": "0.4.5",
-    "html-webpack-plugin": "2.29.0",
+    "html-webpack-plugin": "^2.29.0",
     "image-webpack-loader": "2.0.0",
     "imports-loader": "0.7.1",
-    "jest-cli": "20.0.4",
+    "jest-cli": "^20.0.4",
     "lint-staged": "3.5.1",
     "ngrok": "2.2.9",
     "node-plop": "0.7.0",

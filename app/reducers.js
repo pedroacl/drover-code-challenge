@@ -5,8 +5,10 @@
 import { combineReducers } from 'redux-immutable';
 import { fromJS } from 'immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
-
+import { reducer as formReducer } from 'redux-form';
+import homeReducer from 'containers/HomePage/reducer';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
+// import carsSearchReducer from 'containers/HomePage/reducer';
 
 /*
  * routeReducer
@@ -43,6 +45,8 @@ export default function createReducer(injectedReducers) {
   return combineReducers({
     route: routeReducer,
     language: languageProviderReducer,
+    form: formReducer,
+    home: homeReducer,
     ...injectedReducers,
   });
 }

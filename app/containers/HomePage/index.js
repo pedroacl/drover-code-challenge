@@ -1,46 +1,134 @@
-/*
- * HomePage
- *
- * This is the first thing users see of our App, at the '/' route
- *
- * NOTE: while this component should technically be a stateless functional
- * component (SFC), hot reloading does not currently support SFCs. If hot
- * reloading is not a necessity for you then you can refactor it and remove
- * the linting exception.
- */
-
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
+import PropTypes from 'prop-types';
+import Navbar from 'components/Navbar';
+import CarsList from 'components/CarsList/Loadable';
+import Footer from 'components/Footer';
+import SearchForm from 'components/SearchForm';
+import { loadCars, loadMoreCars } from 'containers/HomePage/actions';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { makeSelectCars } from './selectors';
+import injectSaga from 'utils/injectSaga';
+import saga from './saga';
+import reducer from './reducer';
+import injectReducer from 'utils/injectReducer';
+import Waypoint from 'react-waypoint';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  componentDidMount() {
+    this.page = 1;
+    this.perPage = 2;
+
+    const params = {
+      vehicle_type: 'Consumer',
+      location: 'London',
+      page: this.page,
+      per_page: this.perPage,
+    };
+
+    this.props.loadCars(params);
+  }
+
+  handleSubmit(values) {
+    this.page = 1;
+
+    const params = {
+      page: this.page,
+      per_page: this.perPage,
+    };
+
+    const vals = { ...values, ...params, vehicle_type: 'Consumer' };
+
+    this.props.loadCars(vals);
+  }
+
+  handleWaypointEnter() {
+    this.page += 1;
+
+    const params = {
+      vehicle_type: 'Consumer',
+      location: 'London',
+      page: this.page,
+      per_page: this.perPage,
+    };
+
+    this.props.loadMoreCars(params);
+  }
+
+  renderCarsList() {
+    if (this.props.cars) {
+      return (
+        <CarsList cars={this.props.cars} />
+      );
+    }
+
+    return (<div />);
+  }
+
   render() {
+    const mainContentStyle = {
+      marginTop: '56px',
+      paddingTop: '20px',
+      fontFamily: 'Maison-Neue-Bold',
+    };
+
+    const formStyle = {
+      marginBottom: '20px',
+    };
+
     return (
-      <nav className="navbar navbar-expand-md navbar-light fixed-top bg-white border-bottom box-shadow">
-        <a className="navbar-brand" href="#">Carousel</a>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon" />
-        </button>
-        <div className="collapse navbar-collapse" id="navbarCollapse">
-          <ul className="navbar-nav mr-auto">
-            <li className="nav-item active">
-              <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">Link</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link disabled" href="#">Disabled</a>
-            </li>
-          </ul>
-          <a className="nav-link" href="#">Login<span className="sr-only">(current)</span></a>
-          <a className="btn btn-outline-primary my-2 my-sm-0">Sign up today</a>
+      <div>
+        <Navbar />
+        <div className="container">
+          <div className="row main-content" style={mainContentStyle}>
+            <div className="col-md-3" style={formStyle}>
+              <SearchForm onSubmit={values => this.handleSubmit(values)} />
+            </div>
+
+            <div className="col-md-9">
+              {this.renderCarsList()}
+
+              <Waypoint
+                onEnter={() => this.handleWaypointEnter()}
+                onLeave={this.handleWaypointLeave}
+              />
+            </div>
+          </div>
         </div>
-      </nav>
 
-
+        <Footer />
+      </div>
     );
   }
 }
 
+HomePage.propTypes = {
+  loadCars: PropTypes.func.isRequired,
+  loadMoreCars: PropTypes.func.isRequired,
+};
+
+HomePage.defaultProps = {
+  cars: [],
+};
+
+const mapDispatchToProps = dispatch => ({
+  loadCars: params => dispatch(loadCars(params)),
+  loadMoreCars: params => dispatch(loadMoreCars(params)),
+});
+
+const mapStateToProps = createStructuredSelector({
+  cars: makeSelectCars(),
+});
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withSaga = injectSaga({ key: 'home', saga });
+const withReducer = injectReducer({ key: 'home', reducer });
+
+export default compose(
+  withReducer,
+  withSaga,
+  withConnect,
+)(HomePage);
