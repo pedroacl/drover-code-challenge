@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import CarImages from './CarImages';
 import CarDetails from './CarDetails';
-import PropType from 'react-redux';
 
 function renderCarListItem(car) {
   const carsListStyle = {
@@ -9,9 +10,16 @@ function renderCarListItem(car) {
     height: '100%',
   };
 
+  const style = {
+    images: {
+      paddingLeft: '0px',
+      paddingRight: '0px',
+    },
+  };
+
   return (
     <div key={car.id} className="row border bg-white rounded" style={carsListStyle}>
-      <div className="col-md-4">
+      <div className="col-md-4" style={style.images}>
         <CarImages car={car} />
       </div>
 

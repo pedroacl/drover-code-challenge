@@ -1,7 +1,16 @@
 import axios from 'axios';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
-import { carsLoaded, errorLoadingCars, moreCarsLoaded } from 'containers/HomePage/actions';
+
+import {
+  loadingCars,
+  carsLoaded,
+  errorLoadingCars,
+  moreCarsLoaded,
+  autoCompleteLocationLoaded,
+} from 'containers/HomePage/actions';
+
 import { LOAD_CARS, LOAD_MORE_CARS } from 'containers/HomePage/constants';
+import { autoCompleteLocation } from './actions';
 
 function parseParams(params) {
   if (params.subscription_start_days) {
@@ -32,6 +41,8 @@ const url = 'https://app.joindrover.com/api/web/vehicles';
 export function* loadCars(action) {
   try {
     const params = parseParams(action.payload);
+
+    yield put(loadingCars());
     const cars = yield call(() => axios.post(url, params).then(res => res.data.data));
     yield put(carsLoaded(cars));
   } catch (err) {
@@ -42,8 +53,28 @@ export function* loadCars(action) {
 export function* loadMoreCars(action) {
   try {
     const params = parseParams(action.payload);
+
+    yield put(loadingCars());
     const cars = yield call(() => axios.post(url, params).then(res => res.data.data));
     yield put(moreCarsLoaded(cars));
+  } catch (err) {
+    yield put(errorLoadingCars(err));
+  }
+}
+
+export function* loadAutoCompleteLocation(action) {
+  try {
+    const autoCompleteURL = 'https://maps.googleapis.com/maps/api/place/autocomplete/json';
+    const googleAPIKey = '';
+
+    const params = {
+      input: action.payload,
+      key: googleAPIKey,
+      language: 'en',
+    };
+
+    const location = yield call(() => axios.get(autoCompleteURL, params).then(res => res.data));
+    yield put(autoCompleteLocationLoaded(location));
   } catch (err) {
     yield put(errorLoadingCars(err));
   }

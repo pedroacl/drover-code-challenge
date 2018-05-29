@@ -1,8 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const style = {
-  footerStyle: {
+  footer: {
     backgroundColor: '#bef9f9',
     paddingLeft: '5px',
     paddingRight: '5px',
@@ -19,12 +18,12 @@ function getCarPrice(car) {
 }
 
 const CarDetailsFooter = props => (
-  <div className="row" style={style.footerStyle}>
+  <div className="row" style={style.footer}>
     <div className="col-md-4" />
     <div className="col-md-4  text-center">
       <strong>
-        {getCarPrice(props.car)}
-      </strong>/month
+        &pound; {getCarPrice(props.car)}
+      </strong> /month
 
       <div style={style.priceDetails}>(Monthly Vehicle Price inc. VAT)</div>
     </div>
@@ -33,9 +32,5 @@ const CarDetailsFooter = props => (
     </div>
   </div>
 );
-
-CarDetailsFooter.propTypes = {
-  car: PropTypes.shape.isRequired,
-};
 
 export default CarDetailsFooter;

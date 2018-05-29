@@ -1,19 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Navbar from 'components/Navbar';
-import CarsList from 'components/CarsList/Loadable';
-import Footer from 'components/Footer';
-import SearchForm from 'components/SearchForm';
-import { loadCars, loadMoreCars } from 'containers/HomePage/actions';
+import Waypoint from 'react-waypoint';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { makeSelectCars } from './selectors';
+
+// Components
+import Navbar from 'components/Navbar';
+import CarsList from 'components/CarsList/Loadable';
+import Spinner from 'components/Spinner';
+import Footer from 'components/Footer';
+import SearchForm from 'components/SearchForm';
+
+// Containers
+import { loadCars, loadMoreCars } from 'containers/HomePage/actions';
+
+import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
+import { makeSelectCars, makeSelectLoadingCars } from './selectors';
 import saga from './saga';
 import reducer from './reducer';
-import injectReducer from 'utils/injectReducer';
-import Waypoint from 'react-waypoint';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -69,22 +75,28 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
   }
 
   render() {
-    const mainContentStyle = {
-      marginTop: '56px',
-      paddingTop: '20px',
-      fontFamily: 'Maison-Neue-Bold',
-    };
-
-    const formStyle = {
-      marginBottom: '20px',
+    const style = {
+      mainContent: {
+        marginTop: '56px',
+        paddingTop: '20px',
+        fontFamily: 'Maison-Neue-Bold',
+      },
+      form: {
+        marginBottom: '20px',
+      },
+      spinner: {
+        textAlign: 'center',
+        // display: 'flex',
+        // alignItems: 'center',
+      },
     };
 
     return (
       <div>
         <Navbar />
         <div className="container">
-          <div className="row main-content" style={mainContentStyle}>
-            <div className="col-md-3" style={formStyle}>
+          <div className="row main-content" style={style.mainContent}>
+            <div className="col-md-3" style={style.form}>
               <SearchForm onSubmit={values => this.handleSubmit(values)} />
             </div>
 
@@ -94,7 +106,11 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
               <Waypoint
                 onEnter={() => this.handleWaypointEnter()}
                 onLeave={this.handleWaypointLeave}
-              />
+              >
+                <div className="row-fluid" style={style.spinner}>
+                  <Spinner loading={this.props.loadingCars} />
+                </div>
+              </Waypoint>
             </div>
           </div>
         </div>
@@ -108,6 +124,7 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
 HomePage.propTypes = {
   loadCars: PropTypes.func.isRequired,
   loadMoreCars: PropTypes.func.isRequired,
+  loadingCars: PropTypes.bool.isRequired,
 };
 
 HomePage.defaultProps = {
@@ -121,6 +138,7 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = createStructuredSelector({
   cars: makeSelectCars(),
+  loadingCars: makeSelectLoadingCars(),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
