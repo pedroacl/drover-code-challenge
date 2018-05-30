@@ -22,6 +22,8 @@ import saga from './saga';
 import reducer from './reducer';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
+
 
 class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
   componentDidMount() {
@@ -96,11 +98,11 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
         <Navbar />
         <div className="container">
           <div className="row main-content" style={style.mainContent}>
-            <div className="col-md-3" style={style.form}>
+            <div className="col-sm-12 col-md-3 d-none d-md-block" style={style.form}>
               <SearchForm onSubmit={values => this.handleSubmit(values)} />
             </div>
 
-            <div className="col-md-9">
+            <div className="col-sm-12 col-md-9">
               {this.renderCarsList()}
 
               <Waypoint
@@ -115,6 +117,8 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
           </div>
         </div>
 
+        <div className="refine-search fixed-bottom">Refine Search</div>
+        
         <Footer />
       </div>
     );
