@@ -98,11 +98,11 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
         <Navbar />
         <div className="container">
           <div className="row main-content" style={style.mainContent}>
-            <div className="col-sm-12 col-md-3 d-none d-md-block" style={style.form}>
+            <div className="col-lg-3 d-none d-md-block" style={style.form}>
               <SearchForm onSubmit={values => this.handleSubmit(values)} />
             </div>
 
-            <div className="col-sm-12 col-md-9">
+            <div className="col-lg-9">
               {this.renderCarsList()}
 
               <Waypoint
