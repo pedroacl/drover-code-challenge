@@ -7,6 +7,11 @@ const makeSelectCars = () => createSelector(
   homeState => homeState.get('cars'),
 );
 
+const makeSelectTotalCars = () => createSelector(
+  selectHome,
+  homeState => homeState.get('totalCars'),
+);
+
 const makeSelectLoadingCars = () => createSelector(
   selectHome,
   homeState => homeState.get('loadingCars'),
@@ -15,5 +20,6 @@ const makeSelectLoadingCars = () => createSelector(
 export {
   selectHome,
   makeSelectCars,
+  makeSelectTotalCars,
   makeSelectLoadingCars,
 };

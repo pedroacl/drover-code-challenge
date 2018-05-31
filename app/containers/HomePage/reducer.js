@@ -3,6 +3,7 @@ import { fromJS } from 'immutable';
 
 const initialState = fromJS({
   cars: [],
+  carsTotal: 0,
   loadingCars: false,
 });
 
@@ -14,7 +15,8 @@ export default function homeReducer(state = initialState, action) {
       return state.set('cars', state.get('cars').concat(action.payload))
                   .set('loadingCars', false);
     case CARS_LOADED:
-      return state.set('cars', action.payload)
+      return state.set('cars', action.payload.data)
+                  .set('totalCars', action.payload.metadata.total_count)
                   .set('loadingCars', false);
     case AUTOCOMPLETE_LOCATION_LOADED:
       return state.set('autocompleteLocation', action.payload);

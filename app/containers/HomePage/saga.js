@@ -43,7 +43,7 @@ export function* loadCars(action) {
     const params = parseParams(action.payload);
 
     yield put(loadingCars());
-    const cars = yield call(() => axios.post(url, params).then(res => res.data.data));
+    const cars = yield call(() => axios.post(url, params).then(res => res.data));
     yield put(carsLoaded(cars));
   } catch (err) {
     yield put(errorLoadingCars(err));

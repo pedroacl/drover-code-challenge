@@ -18,7 +18,7 @@ import { loadCars, loadMoreCars } from 'containers/HomePage/actions';
 
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
-import { makeSelectCars, makeSelectLoadingCars } from './selectors';
+import { makeSelectCars, makeSelectLoadingCars, makeSelectTotalCars } from './selectors';
 import saga from './saga';
 import reducer from './reducer';
 
@@ -107,6 +107,12 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
             </div>
 
             <div className="col-lg-9">
+              <div>
+                <h4 className="">
+                  {this.props.totalCars} Vehicles found near {this.props.searchLocation}
+                </h4>
+              </div>
+
               <div className="d-flex flex-row justify-content-end" style={style.sortMenu}>
                 <CarsSortMenu />
               </div>
@@ -150,6 +156,7 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = createStructuredSelector({
   cars: makeSelectCars(),
+  totalCars: makeSelectTotalCars(),
   loadingCars: makeSelectLoadingCars(),
 });
 
