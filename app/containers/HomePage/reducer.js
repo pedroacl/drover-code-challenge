@@ -12,6 +12,7 @@ export default function homeReducer(state = initialState, action) {
   switch (action.type) {
     case LOADING_CARS:
       return state.set('loadingCars', true)
+                  .set('cars', [])
                   .set('searchLocation', action.payload);
     case MORE_CARS_LOADED:
       return state.set('cars', state.get('cars').concat(action.payload))
