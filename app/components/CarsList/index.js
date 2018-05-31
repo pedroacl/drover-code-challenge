@@ -7,13 +7,18 @@ import CarDetails from './CarDetails';
 function renderCarListItem(car) {
   const carsListStyle = {
     marginBottom: '20px',
-    height: '100%',
+    padding: '0px',
+    paddingLeft: '0px',
   };
 
   const style = {
     images: {
       paddingLeft: '0px',
       paddingRight: '0px',
+      minWidth: '230px',
+    },
+    details: {
+      padding: '0px',
     },
   };
 
@@ -23,7 +28,7 @@ function renderCarListItem(car) {
         <CarImages car={car} />
       </div>
 
-      <div className="col-md-8">
+      <div className="col-md-8" style={style.details}>
         <CarDetails car={car} />
       </div>
     </div>

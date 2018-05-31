@@ -7,6 +7,7 @@ import { createStructuredSelector } from 'reselect';
 
 // Components
 import Navbar from 'components/Navbar';
+import CarsSortMenu from 'components/CarsSortMenu';
 import CarsList from 'components/CarsList/Loadable';
 import Spinner from 'components/Spinner';
 import Footer from 'components/Footer';
@@ -23,6 +24,7 @@ import reducer from './reducer';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
+import 'font-awesome/css/font-awesome.min.css';
 
 
 class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
@@ -81,15 +83,17 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
       mainContent: {
         marginTop: '56px',
         paddingTop: '20px',
-        fontFamily: 'Maison-Neue-Bold',
+        fontFamily: 'Maison-Neue-Book, Arial, sans-serif',
+      },
+      sortMenu: {
+        paddingBottom: '10px',
       },
       form: {
         marginBottom: '20px',
       },
       spinner: {
-        textAlign: 'center',
-        // display: 'flex',
-        // alignItems: 'center',
+        fontSize: '3em',
+        padding: '0px',
       },
     };
 
@@ -98,18 +102,22 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
         <Navbar />
         <div className="container">
           <div className="row main-content" style={style.mainContent}>
-            <div className="col-lg-3 d-none d-md-block" style={style.form}>
+            <div className="col-lg-3" style={style.form}>
               <SearchForm onSubmit={values => this.handleSubmit(values)} />
             </div>
 
             <div className="col-lg-9">
+              <div className="d-flex flex-row justify-content-end" style={style.sortMenu}>
+                <CarsSortMenu />
+              </div>
+
               {this.renderCarsList()}
 
               <Waypoint
                 onEnter={() => this.handleWaypointEnter()}
                 onLeave={this.handleWaypointLeave}
               >
-                <div className="row-fluid" style={style.spinner}>
+                <div className="d-flex flew-row justify-content-center" style={style.spinner}>
                   <Spinner loading={this.props.loadingCars} />
                 </div>
               </Waypoint>
@@ -117,7 +125,7 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
           </div>
         </div>
 
-        <div className="refine-search fixed-bottom">Refine Search</div>
+        <div className="refine-search fixed-bottom d-lg-none">Refine Search</div>
         
         <Footer />
       </div>

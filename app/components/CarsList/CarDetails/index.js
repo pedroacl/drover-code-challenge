@@ -9,33 +9,21 @@ const style = {
 };
 
 const CarDetails = props => (
-  <div style={style} style={style}>
-    <div className="row">
-      <div className="col">
-        <CarDetailsHeader car={props.car} />
-      </div>
+  <div className="d-flex flex-column justify-content-between" style={style} >
+    <div>
+      <CarDetailsHeader car={props.car} />
     </div>
 
-    <hr/>
-
-    <div className="row">
-      <div className="col">
-        <CarDetailsBody car={props.car} />
-      </div>
+    <div>
+      <CarDetailsBody car={props.car} />
     </div>
 
-    <hr/>
-
-    <div className="row">
-      <div className="col">
+    <div>
         Tech specs
-      </div>
     </div>
 
-    <div className="row">
-      <div className="col">
-        <CarDetailsFooter car={props.car} />
-      </div>
+    <div>
+      <CarDetailsFooter car={props.car} />
     </div>
   </div>
 );

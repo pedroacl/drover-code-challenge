@@ -3,10 +3,8 @@ import React from 'react';
 const style = {
   footer: {
     backgroundColor: '#bef9f9',
-    paddingLeft: '5px',
-    paddingRight: '5px',
-    display: 'flex',
-    alignItems: 'center',
+    paddingLeft: '10px',
+    paddingRight: '10px',
   },
   priceDetails: {
     fontSize: '0.9em',
@@ -18,16 +16,18 @@ function getCarPrice(car) {
 }
 
 const CarDetailsFooter = props => (
-  <div className="row" style={style.footer}>
-    <div className="col-md-4" />
-    <div className="col-md-4  text-center">
+  <div className="d-flex flew-row justify-content-around" style={style.footer}>
+    <div className="">
+      Text
+    </div>
+    <div className=" text-center">
       <strong>
         &pound; {getCarPrice(props.car)}
       </strong> /month
 
       <div style={style.priceDetails}>(Monthly Vehicle Price inc. VAT)</div>
     </div>
-    <div className="col-md-4">
+    <div className="">
       <div className="btn btn-success">See more details</div>
     </div>
   </div>
