@@ -34,7 +34,7 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
   componentDidMount() {
     this.page = 1;
     this.perPage = 2;
-    console.log(this.props);
+
     const params = {
       vehicle_type: 'Consumer',
       location: 'London',
@@ -63,7 +63,7 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
 
     const params = {
       vehicle_type: 'Consumer',
-      location: 'London',
+      location: this.props.searchLocation,
       page: this.page,
       per_page: this.perPage,
     };
@@ -72,7 +72,7 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
   }
 
   renderCarsList() {
-    if (this.props.cars) {
+    if (this.props.cars.length > 0) {
       return (
         <CarsList cars={this.props.cars} />
       );
