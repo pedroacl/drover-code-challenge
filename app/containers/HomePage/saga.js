@@ -41,8 +41,7 @@ const url = 'https://app.joindrover.com/api/web/vehicles';
 export function* loadCars(action) {
   try {
     const params = parseParams(action.payload);
-
-    yield put(loadingCars());
+    yield put(loadingCars(action.payload.location));
     const cars = yield call(() => axios.post(url, params).then(res => res.data));
     yield put(carsLoaded(cars));
   } catch (err) {

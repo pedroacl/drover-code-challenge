@@ -14,9 +14,9 @@ export const loadCars = params => ({
   payload: params,
 });
 
-export const loadingCars = () => ({
+export const loadingCars = location => ({
   type: LOADING_CARS,
-  payload: {},
+  payload: location,
 });
 
 export const carsLoaded = cars => ({

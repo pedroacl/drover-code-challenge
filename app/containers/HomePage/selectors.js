@@ -17,9 +17,15 @@ const makeSelectLoadingCars = () => createSelector(
   homeState => homeState.get('loadingCars'),
 );
 
+const makeSelectSearchLocation = () => createSelector(
+  selectHome,
+  homeState => homeState.get('searchLocation'),
+);
+
 export {
   selectHome,
   makeSelectCars,
   makeSelectTotalCars,
   makeSelectLoadingCars,
+  makeSelectSearchLocation,
 };

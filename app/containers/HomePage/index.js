@@ -18,20 +18,23 @@ import { loadCars, loadMoreCars } from 'containers/HomePage/actions';
 
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
-import { makeSelectCars, makeSelectLoadingCars, makeSelectTotalCars } from './selectors';
+import {
+  makeSelectCars,
+  makeSelectLoadingCars,
+  makeSelectTotalCars,
+  makeSelectSearchLocation,
+} from './selectors';
 import saga from './saga';
 import reducer from './reducer';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
-import 'font-awesome/css/font-awesome.min.css';
-
 
 class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
   componentDidMount() {
     this.page = 1;
     this.perPage = 2;
-
+    console.log(this.props);
     const params = {
       vehicle_type: 'Consumer',
       location: 'London',
@@ -113,7 +116,7 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
                 </h4>
               </div>
 
-              <div className="d-flex flex-row justify-content-end" style={style.sortMenu}>
+              <div className="d-flex flex-row justify-content-end p-bottom-10" style={style.sortMenu}>
                 <CarsSortMenu />
               </div>
 
@@ -132,7 +135,7 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
         </div>
 
         <div className="refine-search fixed-bottom d-lg-none">Refine Search</div>
-        
+
         <Footer />
       </div>
     );
@@ -158,6 +161,7 @@ const mapStateToProps = createStructuredSelector({
   cars: makeSelectCars(),
   totalCars: makeSelectTotalCars(),
   loadingCars: makeSelectLoadingCars(),
+  searchLocation: makeSelectSearchLocation(),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
