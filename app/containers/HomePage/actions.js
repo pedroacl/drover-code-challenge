@@ -1,6 +1,7 @@
 import {
   LOAD_CARS,
   LOADING_CARS,
+  LOADING_MORE_CARS,
   CARS_LOADED,
   LOAD_MORE_CARS,
   MORE_CARS_LOADED,
@@ -22,6 +23,11 @@ export const loadingCars = location => ({
 export const carsLoaded = cars => ({
   type: CARS_LOADED,
   payload: cars,
+});
+
+export const loadingMoreCars = location => ({
+  type: LOADING_MORE_CARS,
+  payload: location,
 });
 
 export const loadMoreCars = cars => ({

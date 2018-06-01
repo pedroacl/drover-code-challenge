@@ -3,6 +3,7 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import {
   loadingCars,
+  loadingMoreCars,
   carsLoaded,
   errorLoadingCars,
   moreCarsLoaded,
@@ -10,7 +11,6 @@ import {
 } from 'containers/HomePage/actions';
 
 import { LOAD_CARS, LOAD_MORE_CARS } from 'containers/HomePage/constants';
-import { autoCompleteLocation } from './actions';
 
 function parseParams(params) {
   if (params.subscription_start_days) {
@@ -53,7 +53,7 @@ export function* loadMoreCars(action) {
   try {
     const params = parseParams(action.payload);
 
-    yield put(loadingCars(action.payload.location));
+    yield put(loadingMoreCars(action.payload.location));
     const cars = yield call(() => axios.post(url, params).then(res => res.data.data));
     yield put(moreCarsLoaded(cars));
   } catch (err) {

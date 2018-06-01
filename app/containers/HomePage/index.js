@@ -71,16 +71,6 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
     this.props.loadMoreCars(params);
   }
 
-  renderCarsList() {
-    if (this.props.cars.length > 0) {
-      return (
-        <CarsList cars={this.props.cars} />
-      );
-    }
-
-    return (<div />);
-  }
-
   render() {
     const style = {
       mainContent: {
@@ -120,7 +110,9 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
                 <CarsSortMenu />
               </div>
 
-              {this.renderCarsList()}
+              <div className="">
+                <CarsList cars={this.props.cars} />
+              </div>
 
               <Waypoint
                 onEnter={() => this.handleWaypointEnter()}
