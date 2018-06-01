@@ -9,6 +9,9 @@ const style = {
   priceDetails: {
     fontSize: '0.9em',
   },
+  detailsButton: {
+    backgroundColor: '#50ff7d',
+  },
 };
 
 function getCarPrice(car) {
@@ -16,11 +19,11 @@ function getCarPrice(car) {
 }
 
 const CarDetailsFooter = props => (
-  <div className="d-flex flew-row justify-content-around" style={style.footer}>
+  <div className="d-flex flew-row justify-content-between align-items-center" style={style.footer}>
     <div className="">
       Text
     </div>
-    <div className=" text-center">
+    <div className="text-right">
       <strong>
         &pound; {getCarPrice(props.car)}
       </strong> /month
@@ -28,7 +31,7 @@ const CarDetailsFooter = props => (
       <div style={style.priceDetails}>(Monthly Vehicle Price inc. VAT)</div>
     </div>
     <div className="">
-      <div className="btn btn-success">See more details</div>
+      <div className="btn" style={style.detailsButton}>See more details</div>
     </div>
   </div>
 );

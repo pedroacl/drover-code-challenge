@@ -1,6 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+const style = {
+  signUpButton: {
+    backgroundColor: '#50ff7d',
+  },
+};
+
 const Navbar = () => (
   <nav className="navbar navbar-expand-md navbar-light fixed-top text-black bg-white
     border-bottom box-shadow"
@@ -32,7 +38,7 @@ const Navbar = () => (
         </li>
       </ul>
       <Link className="nav-link" to="">Login</Link>
-      <Link className="btn btn-success my-2 my-sm-0" to="">Sign up today</Link>
+      <Link className="btn btn-outline-secondary my-2 my-sm-0" to="" style={style.signUpButton}>Sign up today</Link>
     </div>
   </nav>
 );
