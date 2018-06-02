@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "PUT": Object {
+    "action": Object {
+      "payload": "London",
+      "type": "app/HomePage/actions/LOADING_CARS",
+    },
+    "channel": null,
+  },
+}
+`;
+
+exports[` 2`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "CALL": Object {
+    "args": Array [],
+    "context": null,
+    "fn": [Function],
+  },
+}
+`;
+
+exports[` 3`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "PUT": Object {
+    "action": Object {
+      "payload": Array [
+        Object {
+          "title": "car1",
+        },
+      ],
+      "type": "app/HomePage/action/CARS_LOADED",
+    },
+    "channel": null,
+  },
+}
+`;
+
+exports[`HomePage saga loadMoreCars Saga loads more cars 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "PUT": Object {
+    "action": Object {
+      "payload": "London",
+      "type": "app/HomePage/actions/LOADING_MORE_CARS",
+    },
+    "channel": null,
+  },
+}
+`;
