@@ -18,10 +18,10 @@ function renderFeatures(features) {
   ));
 }
 
-const CarDetailsBody = props => (
-  <div className="d-flex flex-row flex-wrap text-secondary">
+const CarDetailsFeatures = props => (
+  <div className="d-flex flex-row flex-wrap align-items-center pl-2 pr-2 text-secondary">
     {renderFeatures(props.car.features)}
   </div>
 );
 
-export default CarDetailsBody;
+export default CarDetailsFeatures;

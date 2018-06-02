@@ -31,7 +31,7 @@ const CarDetailsFooter = props => (
       <div style={style.priceDetails}>(Monthly Vehicle Price inc. VAT)</div>
     </div>
     <div className="">
-      <div className="btn" style={style.detailsButton}>See more details</div>
+      <div className="btn btn-outline-dark" style={style.detailsButton}>See more details</div>
     </div>
   </div>
 );

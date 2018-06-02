@@ -1,8 +1,9 @@
 import React from 'react';
 
 import CarDetailsHeader from './CarDetailsHeader';
-import CarDetailsBody from './CarDetailsBody';
 import CarDetailsFooter from './CarDetailsFooter';
+import CarDetailsFeatures from './CarDetailsFeatures';
+import CarDetailsIcons from './CarDetailsIcons';
 
 import CarImages from './CarImages';
 
@@ -35,15 +36,20 @@ const CarDetails = props => (
     </div>
 
     <div className="col-md-8" style={style.details}>
-      <div className="d-flex flex-column justify-content-between" style={style.detailsContent}>
+      <div className="d-flex flex-column justify-content-between align-items-stretch" style={style.detailsContent}>
+        <div>
           <CarDetailsHeader car={props.car} />
+        </div>
+        <span className="border-bottom"/>
 
-        <div className="border-bottom pl-2 pr-2">
-          <CarDetailsBody car={props.car} />
+        <div>
+          <CarDetailsIcons car={props.car} />
         </div>
 
-        <div className="pl-2 pr-2">
-          Tech specs
+        <span className="border-bottom"/>
+
+        <div>
+          <CarDetailsFeatures car={props.car} />
         </div>
 
         <div>
