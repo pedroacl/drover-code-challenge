@@ -11,6 +11,12 @@ import {
 import InputField from './InputField';
 import SelectField from './SelectField';
 
+const style = {
+  submitButton: {
+    backgroundColor: '#50ff7d',
+  },
+};
+
 const SearchForm = (props) => {
   const { handleSubmit, submitForm } = props;
 
@@ -102,7 +108,7 @@ const SearchForm = (props) => {
         />
       </div>
 
-      <input className="btn btn-info" type="submit" />
+      <input className="btn btn-outline-dark" type="submit" style={style.submitButton} />
     </form>
   );
 };
