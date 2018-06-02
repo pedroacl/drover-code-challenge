@@ -26,6 +26,7 @@ import {
 } from './selectors';
 import saga from './saga';
 import reducer from './reducer';
+import styles from './styles';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
@@ -72,30 +73,12 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
   }
 
   render() {
-    const style = {
-      mainContent: {
-        marginTop: '56px',
-        paddingTop: '20px',
-        fontFamily: 'Maison-Neue-Book, Arial, sans-serif',
-      },
-      sortMenu: {
-        paddingBottom: '10px',
-      },
-      form: {
-        marginBottom: '20px',
-      },
-      spinner: {
-        fontSize: '3em',
-        padding: '0px',
-      },
-    };
-
     return (
       <div>
         <Navbar />
         <div className="container">
-          <div className="row main-content" style={style.mainContent}>
-            <div className="col-lg-3" style={style.form}>
+          <div className="row main-content" style={styles.mainContent}>
+            <div className="col-lg-3" style={styles.form}>
               <SearchForm onSubmit={values => this.handleSubmit(values)} />
             </div>
 
@@ -106,7 +89,7 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
                 </h4>
               </div>
 
-              <div className="d-flex flex-row justify-content-end p-bottom-10" style={style.sortMenu}>
+              <div className="d-flex flex-row justify-content-end pb-2" style={styles.sortMenu}>
                 <CarsSortMenu />
               </div>
 
@@ -118,7 +101,7 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
                 onEnter={() => this.handleWaypointEnter()}
                 onLeave={this.handleWaypointLeave}
               >
-                <div className="d-flex flew-row justify-content-center" style={style.spinner}>
+                <div className="d-flex flew-row justify-content-center" style={styles.spinner}>
                   <Spinner loading={this.props.loadingCars} />
                 </div>
               </Waypoint>
@@ -138,6 +121,9 @@ HomePage.propTypes = {
   loadCars: PropTypes.func.isRequired,
   loadMoreCars: PropTypes.func.isRequired,
   loadingCars: PropTypes.bool.isRequired,
+  totalCars: PropTypes.number.isRequired,
+  searchLocation: PropTypes.string.isRequired,
+  // cars: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
 HomePage.defaultProps = {

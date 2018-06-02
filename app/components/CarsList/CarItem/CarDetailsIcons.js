@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const CarDetailsIcons = props => (
   <div className="d-flex flex-row justify-content-around flex-wrap p-2">
@@ -35,5 +36,18 @@ const CarDetailsIcons = props => (
     </div>        
   </div>
 );
+
+CarDetailsIcons.propTypes = {
+  car: PropTypes.shape({
+    body_information: PropTypes.string,
+    color: PropTypes.string,
+    fuel: PropTypes.string,
+    mpg: PropTypes.number,
+    number_doors_information: PropTypes.string,
+    number_seats_information: PropTypes.string,
+    transmission: PropTypes.string,
+    year: PropTypes.number,
+  }).isRequired,
+};
 
 export default CarDetailsIcons;

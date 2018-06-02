@@ -5,7 +5,7 @@ import { fromJS } from 'immutable';
 
 const initialState = fromJS({
   cars: [],
-  carsTotal: 0,
+  totalCars: 0,
   loadingCars: false,
   searchLocation: 'London',
 });

@@ -1,18 +1,6 @@
 import React from 'react';
 
-
 const style = {
-  main: {
-  },
-  description: {
-    paddingRight: '10px',
-  },
-  menu: {
-    paddingLeft: '10px',
-  },
-  sortIcon: {
-    paddingLeft: '5px',
-  },
   dropdown: {
     boxShadow: '0 8px 6px -6px rgba(0,0,0,0.15)',
   },
@@ -21,12 +9,12 @@ const style = {
 const getSortType = () => 'Price - Low to High';
 
 const CarsSortMenu = () => (
-  <div className="d-flex flex-row" style={style.main}>
-    <div className="border-right" style={style.description}>
+  <div className="d-flex flex-row">
+    <div className="border-right pr-2">
       Here
     </div>
 
-    <div style={style.menu}>
+    <div className="pl-1">
       <div className="dropdown">
         <button
           className="dropdown-toggle"

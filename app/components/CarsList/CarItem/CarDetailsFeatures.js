@@ -4,14 +4,14 @@ function renderFeatures(features) {
   const [first, ...rest] = features;
 
   const content = [(
-    <div>
+    <div key={first}>
       { first }
     </div>
   )];
 
   return content.concat(rest.map(
     feature => (
-      <div>
+      <div key={feature}>
         - {feature}
       </div>
     ),
