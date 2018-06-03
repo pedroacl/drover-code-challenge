@@ -11,7 +11,7 @@ const footerStyle = {
 
 const Footer = () => (
   <footer className="footer" style={footerStyle}>
-    <div className="container-fluid text-white">
+    <div className="container-fluid text-white d-none d-md-block">
       <FooterTop />
       <FooterMiddle />
       <FooterBottom />

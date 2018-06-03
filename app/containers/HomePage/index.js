@@ -78,7 +78,7 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
         <Navbar />
         <div className="container">
           <div className="row main-content" style={styles.mainContent}>
-            <div className="col-lg-3" style={styles.form}>
+            <div className="col-lg-3 col-sm-12" style={styles.form}>
               <SearchForm onSubmit={values => this.handleSubmit(values)} />
             </div>
 
@@ -109,7 +109,11 @@ class HomePage extends React.Component { // eslint-disable-line react/prefer-sta
           </div>
         </div>
 
-        <div className="refine-search fixed-bottom d-lg-none">Refine Search</div>
+        <div className="d-flex flex-row fixed-bottom d-lg-none justify-content-center align-items-center" style={styles.refineSearch}>
+          <a className="btn btn-outline-dark font-weight-bold" style={styles.refineSearchBtn}>
+            Refine your search
+          </a>
+        </div>
 
         <Footer />
       </div>
