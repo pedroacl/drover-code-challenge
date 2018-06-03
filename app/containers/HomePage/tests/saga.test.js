@@ -59,15 +59,21 @@ describe('HomePage saga', () => {
   describe('loadMoreCars Saga', () => {
     let loadMoreCarsGenerator;
 
-    beforeEach(() => {
+    beforeAll(() => {
       const params = {
         location: 'London',
       };
 
       loadMoreCarsGenerator = loadMoreCarsSaga(loadMoreCarsAction(params));
 
-      const callDescriptor = loadMoreCarsGenerator.next().value;
-      expect(callDescriptor).toMatchSnapshot();
+      const putLoadingMoreCars = loadMoreCarsGenerator.next().value;
+      expect(putLoadingMoreCars).toMatchSnapshot();
+
+      const callLoadMoreCars = loadMoreCarsGenerator.next().value;
+      expect(callLoadMoreCars).toMatchSnapshot();
+
+      const putMoreCarsLoaded = loadMoreCarsGenerator.next().value;
+      expect(putMoreCarsLoaded).toMatchSnapshot();
     });
 
     it('loads more cars', () => {
