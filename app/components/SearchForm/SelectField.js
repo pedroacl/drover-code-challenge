@@ -16,11 +16,11 @@ renderOption.propTypes = {
   label: PropTypes.string.isRequired,
 };
 
-const renderSelectField = ({ name, input, label, type, touched, error, options }) => (
+const SelectField = ({ input, label, touched, error, options }) => (
   <div>
     <label className="font-weight-bold">{label}</label>
     <div>
-      <select {...input} placeholder={label} type={type} className="form-control">
+      <select {...input} placeholder={label} type="select" className="form-control">
         {(options).map(option => renderOption(option))}
       </select>
       {touched && error && <span>{error}</span>}
@@ -28,11 +28,19 @@ const renderSelectField = ({ name, input, label, type, touched, error, options }
   </div>
 );
 
-renderSelectField.propTypes = {
-  name: PropTypes.string,
-  label: PropTypes.string,
-  touched: PropTypes.bool,
-  error: PropTypes.string,
+SelectField.defaultProps = {
+  input: 'select',
+  label: '',
+  touched: false,
+  error: {},
 };
 
-export default renderSelectField;
+SelectField.propTypes = {
+  input: PropTypes.shape().isRequired,
+  label: PropTypes.string,
+  touched: PropTypes.bool,
+  error: PropTypes.shape(),
+  options: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+};
+
+export default SelectField;

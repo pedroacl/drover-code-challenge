@@ -23,7 +23,9 @@ const CarImages = props => (
 );
 
 CarImages.propTypes = {
-  car: PropTypes.shape(),
+  car: PropTypes.shape({
+    images: PropTypes.arrayOf(PropTypes.shape()),
+  }),
 };
 
 export default CarImages;

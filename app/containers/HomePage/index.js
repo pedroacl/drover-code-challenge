@@ -123,7 +123,6 @@ HomePage.propTypes = {
   loadingCars: PropTypes.bool.isRequired,
   totalCars: PropTypes.number.isRequired,
   searchLocation: PropTypes.string.isRequired,
-  // cars: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
 HomePage.defaultProps = {

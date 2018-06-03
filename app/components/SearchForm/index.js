@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
 import {
   subscriptionStartDaysOptions,
@@ -18,7 +19,7 @@ const style = {
 };
 
 const SearchForm = (props) => {
-  const { handleSubmit, submitForm } = props;
+  const { handleSubmit } = props;
 
   return (
     <form onSubmit={handleSubmit}>
@@ -113,7 +114,10 @@ const SearchForm = (props) => {
   );
 };
 
+SearchForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+};
+
 export default reduxForm({
   form: 'carsSearchForm',
-  // onSubmit,
 })(SearchForm);

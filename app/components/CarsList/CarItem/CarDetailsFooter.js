@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const style = {
   footer: {
@@ -35,5 +36,9 @@ const CarDetailsFooter = props => (
     </div>
   </div>
 );
+
+CarDetailsFooter.propTypes = {
+  car: PropTypes.shape().isRequired,
+};
 
 export default CarDetailsFooter;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function renderFeatures(features) {
   const [first, ...rest] = features;
@@ -23,5 +24,11 @@ const CarDetailsFeatures = props => (
     {renderFeatures(props.car.features)}
   </div>
 );
+
+CarDetailsFeatures.propTypes = {
+  car: PropTypes.shape({
+    features: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
+};
 
 export default CarDetailsFeatures;

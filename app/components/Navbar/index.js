@@ -37,8 +37,12 @@ const Navbar = () => (
           <Link className="nav-link" to="">Become a fleet partner</Link>
         </li>
       </ul>
+
       <Link className="nav-link" to="">Login</Link>
-      <Link className="btn btn-outline-dark my-2 my-sm-0" to="" style={style.signUpButton}>Sign up today</Link>
+
+      <Link className="btn btn-outline-dark my-2 my-sm-0" to="" style={style.signUpButton}>
+        Sign up today
+      </Link>
     </div>
   </nav>
 );

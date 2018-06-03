@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const CarDetailsHeader = props => (
   <div className="d-flex flex-row justify-content-between p-2">
@@ -14,5 +15,12 @@ const CarDetailsHeader = props => (
     Available from {props.car.available_start_date}
   </div>
 );
+
+CarDetailsHeader.propTypes = {
+  car: PropTypes.shape({
+    postcode: PropTypes.string,
+    available_start_date: PropTypes.string,
+  }).isRequired,
+};
 
 export default CarDetailsHeader;
